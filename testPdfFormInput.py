@@ -70,7 +70,7 @@ class Test(unittest.TestCase):
 
             # Switch to the new tab and open the saved PDF
             self.driver.switch_to.window(self.driver.window_handles[1])
-            saved_pdf = "file:///Users/tracy/Downloads/OoPdfFormExample.pdf"
+            saved_pdf = "file:///Users/bchatterton/Downloads/OoPdfFormExample.pdf"
             self.driver.get(saved_pdf)
             WebDriverWait(self.driver, 10).until(EC.title_contains('PDF Form Example'))
             print("Title of the loaded file is: " + self.driver.title)
