@@ -57,7 +57,14 @@ Launch the build manually one time to navigate through any system permission dia
 - run: `pytest`
 - IMPORTANT: On MacOS you may be prompted to allow Terminal to control accessibility settings.
   Allow this. You may need to re-run the tests.
-- Test results are displayed inline. 
+- Test results are displayed inline.
+
+- ### Notable command line options
+- --run_headless=True (run the tests in headless mode)
+- --fx_edition=option (options are Custom(default), Firefox, Nightly)
+- -rA shows print statements in terminal
+- --html=report.html (creates an html report file, report.html, in top project directory)
+
 - On Failure:
   - rerun the test suite as above - run: `pytest`
   - or just the failed test; i.e.: `pytesr test_amazon.py`

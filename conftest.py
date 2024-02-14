@@ -8,16 +8,28 @@ from selenium.webdriver.firefox.options import Options
 def pytest_addoption(parser):
     # set the location of the fx binary from command line if provided
     parser.addoption(
-        "--fx_executable",
+        "--fx_edition",
         action="store",
         default="Custom",
-        help="Firefox executable to test. See README for exact paths to builds",
+        help="Firefox edition to test. See README for exact paths to builds",
+    )
+
+    parser.addoption(
+        "--run_headless",
+        action="store",
+        default=False,
+        help="Run in headless mode: --run_headless=True",
     )
 
 
 @pytest.fixture()
+def opt_headless(request):
+    return request.config.getoption("--run_headless")
+
+
+@pytest.fixture()
 def fx_executable(request):
-    version = request.config.getoption("--fx_executable")
+    version = request.config.getoption("--fx_edition")
 
     # Get the platform this is running on
     sys_platform = platform.system()
@@ -51,10 +63,11 @@ def fx_executable(request):
 
 
 @pytest.fixture(autouse=True)
-def session(fx_executable):
+def session(fx_executable, opt_headless):
     # create a new instance of the browser
     options = Options()
-    # options.add_argument("--headless")
+    if opt_headless:
+        options.add_argument("--headless")
     options.binary_location = fx_executable
     options.set_preference("browser.toolbars.bookmarks.visibility", "always")
     s = webdriver.Firefox(options=options)
