@@ -10,7 +10,7 @@ def test_url():
     return "https://www.twitch.com"
 
 
-def test_new_tab(session, test_url):
+def test_twitch_search(session, test_url):
     print(" - TEST: Verify a user can search on Twitch")
 
     # Navigate to Twitch

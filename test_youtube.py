@@ -13,7 +13,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 def test_url():
     return "https://www.youtube.com/watch?v=mAia0v3ojzw"
 
-def test_new_tab(session, test_url):
+
+def test_youtube_search(session, test_url):
     print(" - TEST: Verify a user can play a Youtube video")
 
     # Navigate to a Youtube video
